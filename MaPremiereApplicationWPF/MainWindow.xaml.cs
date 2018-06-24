@@ -36,7 +36,10 @@ namespace MaPremiereApplicationWPF
 
             MonPremierStackPanel.Children.Add(MonSecondBouton);
 
-            MonPremierEvenement += CeciEstUneMethode;
+            MonPremierEvenement += (str) =>
+            {
+                MonPremierLabel.Content = str;
+            };
         }
 
         private void MonPremierBouton_Click(object sender, RoutedEventArgs e)
@@ -48,10 +51,6 @@ namespace MaPremiereApplicationWPF
         {
             MonPremierEvenement("Second Bouton");
         }
-
-        private void CeciEstUneMethode(String str)
-        {
-            MonPremierLabel.Content = str;
-        }
+        
     }
 }
