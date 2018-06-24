@@ -20,9 +20,38 @@ namespace MaPremiereApplicationWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        delegate void MonPremierDelegate(String str);
+
+        event MonPremierDelegate MonPremierEvenement;
+
+        Button MonSecondBouton;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            MonSecondBouton = new Button();
+            MonSecondBouton.Content = "Ceci est un deuxième bouton";
+            MonSecondBouton.Click += MonSecondBouton_Click;
+
+            MonPremierStackPanel.Children.Add(MonSecondBouton);
+
+            MonPremierEvenement += CeciEstUneMethode;
+        }
+
+        private void MonPremierBouton_Click(object sender, RoutedEventArgs e)
+        {
+            MonPremierEvenement("Premier Bouton");
+        }
+
+        private void MonSecondBouton_Click(object sender, RoutedEventArgs e)
+        {
+            MonPremierEvenement("Second Bouton");
+        }
+
+        private void CeciEstUneMethode(String str)
+        {
+            MonPremierLabel.Content = str;
         }
     }
 }
